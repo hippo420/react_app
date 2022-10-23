@@ -1,9 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react';
+import {Link, useNavigate } from 'react-router-dom';
+import Login from './Login';
 
-export default class Main extends Component {
-  render() {
+function Main() {
+
+  const navigate = useNavigate();
     return (
-      <div>Main</div>
+      
+      <div>
+      <h1>Main Page</h1>
+      <button onClick={()=>{
+        navigate('/login');
+      }}>Login</button>
+      </div>
+      
     )
-  }
+  
 }
+
+export default Main;

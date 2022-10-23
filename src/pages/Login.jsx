@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 //axois.defaults.withCredentials=true;
 
 
@@ -34,7 +35,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 function Login(props) {
-
+  const navigate = useNavigate();
   console.log('Login');
   const[id,setId]=useState("");
   const[pwd,setPwd]=useState("");
@@ -53,7 +54,12 @@ function Login(props) {
             .then(response => {
                 console.log('res.data : '+response.data);
                 console.log('res.status : '+response.status);
-                
+                if(response.data==='OK')
+                {
+                  navigate('/main');
+                }else{
+                  console.log('로그인에 실패');
+                }
             });
         //console.dir(req);
   };
