@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 //axois.defaults.withCredentials=true;
 
 
@@ -39,7 +40,7 @@ function Login(props) {
   console.log('Login');
   const[id,setId]=useState("");
   const[pwd,setPwd]=useState("");
-
+  const [cookie, setCookie] = useCookies(['id']);
   function onSubmit(e){
     //alert('로그인 버튼 클릭');
     e.preventDefault();
@@ -52,6 +53,7 @@ function Login(props) {
     console.log(req.id+", "+req.password);
     axios.post('http://localhost:3333/login',req)
             .then(response => {
+              setCookie('id',response.data.token);
                 console.log('res.data : '+response.data);
                 console.log('res.status : '+response.status);
                 if(response.data==='OK')

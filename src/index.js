@@ -5,11 +5,14 @@ import './bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Routes from './Routes';
+import { CookiesProvider } from 'react-cookie';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
+    <CookiesProvider>
+      <App />
+    </CookiesProvider>
   </React.StrictMode>
 );
 
